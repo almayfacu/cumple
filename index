@@ -12,6 +12,7 @@
       overflow: hidden;
       margin: 0;
       padding: 0;
+      font-family: Arial, Helvetica, sans-serif; /* fuente limpia y no cursiva */
     }
     .merrywrap {
       position: absolute;
@@ -22,10 +23,12 @@
     }
     .giftbox {
       position: absolute;
-      width: 500px;
-      height: 400px;
-      left: 45%;
-      margin-left: -150px;
+      /* medidas responsivas */
+      width: min(70vw, 500px);
+      height: auto;
+      aspect-ratio: 5 / 4;
+      left: 50%;
+      transform: translateX(-50%);
       bottom: 0;
       z-index: 10;
     }
@@ -43,8 +46,8 @@
       transform-origin: 0 0;
       color: #e7e7e7;
       text-shadow: 5px 5px 0px #000000;
-      font-family: cursive;
-      font-size: 50px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(22px, 5vw, 50px);
       text-align: center;
       padding: 10px;
     }
@@ -160,7 +163,9 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      max-width: 35%;
+      /* imagen final responsiva */
+      max-width: min(90vw, 700px);
+      max-height: 90vh;
       border-radius: 20px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
       animation: fadeIn 1s ease forwards;
@@ -211,34 +216,16 @@
       opacity: 0.8;
       animation-timing-function: ease-in-out;
     }
-    .heart-up {
-      animation-name: floatHeartUp;
-    }
-    .heart-down {
-      animation-name: floatHeartDown;
-    }
+    .heart-up { animation-name: floatHeartUp; }
+    .heart-down { animation-name: floatHeartDown; }
     @keyframes floatHeartUp {
-      0% {
-        transform: translateY(0) scale(1) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-300px) translateX(-50px) scale(1.5) rotate(30deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-300px) translateX(-50px) scale(1.5) rotate(30deg); opacity: 0; }
     }
     @keyframes floatHeartDown {
-      0% {
-        transform: translateY(-100px) scale(1);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) translateX(30px) scale(1.5) rotate(-30deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(-100px) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(100vh) translateX(30px) scale(1.5) rotate(-30deg); opacity: 0; }
     }
   </style>
 </head>
@@ -324,7 +311,7 @@
           dy: Math.sin(angle) * speed,
           life: 200 + Math.random() * 100,
           radius: Math.random() * 5 + 3,
-          color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+          color: `hsl(${Math.random() * 360}, 100%, 70%)`, // FIX: ahora es un string válido
         };
       }
 
